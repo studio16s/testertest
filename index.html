@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ʝᨡᨵᩙɾ𝒊ɕִׄhׁׅ֮ᧉ᩠֗爱 — เครดิตการซื้อขาย</title>
+<meta name="theme-color" content="#fff8fc">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff8fc;--card:#ffffff;--text:#5b5261;--muted:#9c91a2;
+  --primary:#c39bdc;--primaryText:#fff;--accent:#f7d6e8;
+  --border:#eee3f0;--shadow:0 14px 38px rgba(101,76,112,.10);
+  --danger:#df8297;--success:#87b99a;--radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Prompt,sans-serif;font-weight:400}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+img{max-width:100%}
+.hidden{display:none!important}
+.app{min-height:100vh;padding-bottom:105px}
+.container{width:min(940px,calc(100% - 28px));margin:auto}
+.hero{padding-top:14px}
+.banner-wrap{position:relative;overflow:visible}
+.banner{
+  width:100%;height:auto;display:block;object-fit:contain;border-radius:28px;
+  background:var(--accent);box-shadow:var(--shadow);min-height:145px;
+}
+.banner-fallback{min-height:145px;display:grid;place-items:center;color:var(--muted);border-radius:28px;background:var(--accent)}
+.banner-topbar{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:38px;margin:0 0 10px;padding:0 52px 0 0;box-sizing:border-box}
+.banner-marquee{width:100%;min-width:0;height:38px;overflow:hidden;border:1px solid var(--border);border-radius:18px;background:var(--card);box-shadow:var(--shadow);display:flex;align-items:center;color:var(--text);font-size:12px;white-space:nowrap;pointer-events:none}
+.banner-marquee>div{display:inline-block;padding-left:100%;animation:bannerMarquee 15s linear infinite}
+.banner-topbar .admin-open{position:absolute !important;top:50%;right:0;transform:translateY(-50%);z-index:20;flex:0 0 auto;width:38px;height:38px;border-radius:14px;border:1px solid var(--border);background:var(--card);color:var(--text);box-shadow:var(--shadow);display:grid;place-items:center;padding:0}
+@keyframes bannerMarquee{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+.profile{
+  width:108px;height:108px;border-radius:50%;object-fit:cover;position:absolute;
+  left:50%;bottom:-54px;transform:translateX(-50%);border:6px solid var(--bg);
+  background:var(--primary);box-shadow:0 10px 25px rgba(70,50,80,.14);z-index:3
+}
+.profile-letter{display:grid;place-items:center;color:#fff;font-size:32px;font-weight:600}
+.store-info{text-align:center;padding:68px 15px 20px}
+.store-name{font-size:28px;font-weight:600;margin:0 0 6px}
+.store-desc{font-size:14px;color:var(--muted);line-height:1.8;white-space:pre-wrap;margin:auto;max-width:680px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(140px,220px));justify-content:center;gap:12px;margin:10px auto 22px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:15px 10px;text-align:center;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:90px}
+.stat .icon{font-size:19px;margin-bottom:4px}
+.stat b{display:block;font-size:18px}
+.stat span{font-size:11px;color:var(--muted)}
+.note{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:16px 18px;margin-bottom:18px;box-shadow:var(--shadow)}
+.note-title{font-size:12px;color:var(--muted);margin-bottom:4px}.note-body{white-space:pre-wrap;line-height:1.7}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 12px}
+.section-title{font-size:19px;font-weight:600}.count{font-size:12px;color:var(--muted)}
+.review-list{display:grid;gap:14px}
+.review-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+.review-top{display:flex;align-items:center;gap:11px}
+.avatar-letter{width:45px;height:45px;border-radius:50%;display:grid;place-items:center;background:var(--primary);color:var(--primaryText);font-weight:600}
+.review-meta{min-width:0;flex:1}.review-name{font-weight:500}.review-date{font-size:11px;color:var(--muted)}
+.stars{letter-spacing:1px;font-size:13px}
+.review-text{margin:12px 0 0;line-height:1.75;font-size:14px;white-space:pre-wrap;word-break:break-word}
+.proof{display:block;width:100%;height:auto;border-radius:16px;margin-top:13px;border:1px solid var(--border);object-fit:contain;background:var(--accent)}
+.empty{padding:42px 15px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--border);border-radius:22px}
+.fab{position:fixed;z-index:50;bottom:18px;left:50%;transform:translateX(-50%);border:0;border-radius:999px;padding:12px 19px;background:var(--primary);color:var(--primaryText);box-shadow:0 12px 30px rgba(90,60,100,.22);font-size:13px}
+.admin-open{position:fixed;right:15px;bottom:19px;z-index:49;width:43px;height:43px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);box-shadow:var(--shadow)}
+.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(35,25,40,.46);display:flex;align-items:flex-end;justify-content:center;padding:12px}
+.modal{width:min(680px,100%);max-height:92vh;overflow:auto;background:var(--card);border-radius:28px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.22);animation:up .2s ease}
+@keyframes up{from{transform:translateY(20px);opacity:.5}to{transform:none;opacity:1}}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.modal-head h2{font-size:19px;margin:0}.close{border:0;background:var(--accent);width:34px;height:34px;border-radius:50%;color:var(--text)}
+.field{margin:0 0 13px}.field label{display:block;font-size:12px;margin:0 0 6px;color:var(--muted)}
+.input,.textarea,.select{width:100%;border:1px solid var(--border);background:var(--bg);color:var(--text);border-radius:15px;padding:11px 13px;outline:none}
+.input:focus,.textarea:focus{border-color:var(--primary)}
+.textarea{min-height:105px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.btn{border:0;border-radius:14px;padding:11px 15px}.btn-primary{background:var(--primary);color:var(--primaryText)}.btn-soft{background:var(--accent);color:var(--text)}.btn-danger{background:var(--danger);color:#fff}.btn-success{background:var(--success);color:#fff}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.rating-stars{display:flex;gap:3px;justify-content:flex-start}.rating-star{border:0;background:transparent;color:#d7cdd9;padding:0 2px;font-size:30px;line-height:1;cursor:pointer;transition:.15s}.rating-star.active{color:#f3b85d}.rating-star:hover{transform:scale(1.08)}
+.preview{width:100%;border-radius:16px;margin-top:8px;border:1px solid var(--border);display:block;max-height:500px;object-fit:contain}
+.filebox{border:1px dashed var(--border);padding:12px;border-radius:15px;background:var(--bg);font-size:12px;color:var(--muted)}
+.admin-tabs{display:flex;gap:7px;overflow:auto;margin-bottom:16px}.tab{white-space:nowrap;border:1px solid var(--border);background:var(--bg);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px}.tab.active{background:var(--primary);color:var(--primaryText);border-color:var(--primary)}
+.panel{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:15px;margin-bottom:12px}
+.panel h3{font-size:14px;margin:0 0 12px}.theme-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.theme{border:1px solid var(--border);background:var(--card);border-radius:15px;padding:10px;text-align:left}.theme b{display:block;font-size:12px}.theme small{color:var(--muted)}
+.color-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.color-input{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);white-space:nowrap}.color-input span{flex:0 0 auto}.color-input .hex-input{flex:1;min-width:0}.color-input input[type=color]{width:42px;height:34px;border:0;padding:0;background:none}
+.review-admin{display:flex;gap:9px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}.review-admin:last-child{border-bottom:0}.review-admin-info{flex:1;min-width:0}.review-admin-info b{font-size:12px}.review-admin-info span{display:block;font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toast{position:fixed;z-index:200;top:18px;left:50%;transform:translateX(-50%);background:#39313e;color:#fff;padding:10px 16px;border-radius:999px;font-size:12px;box-shadow:var(--shadow);animation:toast .2s ease}
+@keyframes toast{from{opacity:0;transform:translate(-50%,-8px)}to{opacity:1;transform:translate(-50%,0)}}
+.login-icon{font-size:38px;text-align:center;margin:3px 0 10px}
+.status{font-size:10px;padding:4px 8px;border-radius:999px;background:var(--accent);display:inline-block}
+@media(min-width:720px){.modal-bg{align-items:center}.stats{gap:16px}.review-list{grid-template-columns:1fr 1fr}.review-card:first-child:nth-last-child(odd){grid-column:1/-1}.fab{bottom:22px}.profile{width:140px;height:140px;bottom:-70px}.profile-letter{font-size:40px}.store-info{padding-top:86px}}
+@media(max-width:480px){.container{width:min(100% - 18px,940px)}.store-name{font-size:24px}.stats{gap:7px;grid-template-columns:repeat(2,minmax(125px,180px));justify-content:center}.stat{padding:12px 5px}.stat b{font-size:16px}.row,.color-grid{grid-template-columns:1fr}.modal{padding:16px;border-radius:24px}}
+</style>
+</head>
+<body>
+<div id="app" class="app">
+  <main class="container">
+    <section class="hero">
+      <div class="banner-topbar">
+        <div id="bannerMarquee" class="banner-marquee hidden"><div id="bannerMarqueeText"></div></div>
+        <button class="admin-open" onclick="openAdminLogin()" title="หลังบ้าน" aria-label="เปิดหลังบ้าน">⚙</button>
+      </div>
+
+      <div class="banner-wrap">
+        <img id="banner" class="banner hidden" alt="Banner">
+        <div id="bannerFallback" class="banner-fallback">♡ habibi store ♡</div>
+        <div id="profileLetter" class="profile profile-letter">ʝ</div>
+        <img id="profile" class="profile hidden" alt="Profile">
+      </div>
+
+      <div class="store-info">
+        <h1 id="storeName" class="store-name">ʝᨡᨵᩙɾ𝒊ɕִׄhׁׅ֮ᧉ᩠֗爱</h1>
+        <div id="storeDesc" class="store-desc">ขอบคุณที่เข้ามาแสดงความพึงพอใจให้กับร้านของเรานะคะ ♡</div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <div class="icon">♡</div>
+        <b id="reviewCount">0</b>
+        <span>รีวิวทั้งหมด</span>
+      </div>
+      <div class="stat">
+        <div class="icon">★</div>
+        <b id="avgRating">0.0</b>
+        <span>คะแนนเฉลี่ย</span>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <div class="section-title">♡ เครดิตจากลูกค้า</div>
+      <div id="countLabel" class="count">0 รายการ</div>
+    </div>
+
+    <section id="reviewList" class="review-list"></section>
+  </main>
+
+  <button class="fab" onclick="openReview()">✎ เขียนรีวิว</button>
+</div>
+
+<!-- Review Modal -->
+<div id="reviewModal" class="modal-bg hidden" onclick="outsideClose(event,'reviewModal')">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>เขียนรีวิว ♡</h2>
+      <button class="close" onclick="closeModal('reviewModal')">×</button>
+    </div>
+
+    <form onsubmit="submitReview(event)">
+      <div class="field">
+        <label>ชื่อของคุณ</label>
+        <input id="rName" class="input" maxlength="40" required placeholder="เช่น น้องมายด์">
+      </div>
+
+      <div class="field">
+        <label>ให้คะแนน</label>
+        <div id="ratingStars" class="rating-stars" aria-label="เลือกคะแนน">
+          <button type="button" class="rating-star active" data-rating="1" onclick="setRating(1)">★</button>
+          <button type="button" class="rating-star active" data-rating="2" onclick="setRating(2)">★</button>
+          <button type="button" class="rating-star active" data-rating="3" onclick="setRating(3)">★</button>
+          <button type="button" class="rating-star active" data-rating="4" onclick="setRating(4)">★</button>
+          <button type="button" class="rating-star active" data-rating="5" onclick="setRating(5)">★</button>
+        </div>
+        <input id="selectedRating" type="hidden" value="5">
+      </div>
+
+      <div class="field">
+        <label>ข้อความรีวิว</label>
+        <textarea id="rText" class="textarea" maxlength="500" required placeholder="เขียนความประทับใจของคุณ..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>รูปหลักฐานการซื้อขาย (ไม่บังคับ)</label>
+        <div class="filebox">
+          <input id="rProof" type="file" accept="image/*" onchange="previewProof(event)">
+          <div>เลือกรูปจากคลังภาพในเครื่องได้เลย · ระบบจะแสดงตามสัดส่วนจริง</div>
+        </div>
+        <img id="proofPreview" class="preview hidden" alt="Proof preview">
+      </div>
+
+      <button id="submitReviewBtn" class="btn btn-primary" style="width:100%" type="submit">
+        ส่งรีวิว ♡
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Login -->
+<div id="loginModal" class="modal-bg hidden" onclick="outsideClose(event,'loginModal')">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>เข้าสู่หลังบ้าน</h2>
+      <button class="close" onclick="closeModal('loginModal')">×</button>
+    </div>
+
+    <div class="login-icon">🔐</div>
+
+    <div class="field">
+      <label>รหัสแอดมิน</label>
+      <input id="adminPassword" class="input" type="password" inputmode="numeric" maxlength="20" placeholder="กรอกรหัสผ่าน">
+    </div>
+
+    <button class="btn btn-primary" style="width:100%" onclick="loginAdmin()">
+      เข้าสู่ระบบ
+    </button>
+  </div>
+</div>
+
+<!-- Admin -->
+<div id="adminModal" class="modal-bg hidden" onclick="outsideClose(event,'adminModal')">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>หลังบ้าน — ʝᨡᨵᩙɾ𝒊ɕִׄhׁׅ֮ᧉ᩠֗爱</h2>
+      <button class="close" onclick="logoutAdmin()">×</button>
+    </div>
+
+    <div class="admin-tabs">
+      <button class="tab active" onclick="adminTab('store',this)">ร้านค้า</button>
+      <button class="tab" onclick="adminTab('theme',this)">ธีม</button>
+      <button class="tab" onclick="adminTab('reviews',this)">รีวิว</button>
+    </div>
+
+    <div id="tab-store">
+      <div class="panel">
+        <h3>ข้อมูลร้าน</h3>
+
+        <div class="field">
+          <label>ชื่อร้าน</label>
+          <input id="aName" class="input">
+        </div>
+
+        <div class="field">
+          <label>รายละเอียดร้าน</label>
+          <textarea id="aDesc" class="textarea"></textarea>
+        </div>
+
+        <div class="field">
+          <label>ข้อความจากร้าน</label>
+          <textarea id="aNote" class="textarea" placeholder="เว้นว่างได้"></textarea>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>รูปภาพ</h3>
+
+        <div class="field">
+          <label>ลิงก์รูปโปรไฟล์ — Google Drive สาธารณะ</label>
+          <input id="aAvatar" class="input" placeholder="https://drive.google.com/file/d/.../view">
+        </div>
+
+        <div class="field">
+          <label>ลิงก์แบนเนอร์ — Google Drive สาธารณะ</label>
+          <input id="aBanner" class="input" placeholder="https://drive.google.com/file/d/.../view">
+        </div>
+
+        <div class="field">
+          <small style="color:var(--muted)">
+            ระบบแปลงลิงก์ Drive ให้เอง รองรับ /file/d/ID/view และ ?id=ID
+          </small>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%" onclick="saveStore()">
+        บันทึกข้อมูลร้าน
+      </button>
+    </div>
+
+    <div id="tab-theme" class="hidden">
+      <div class="panel">
+        <h3>ธีมสำเร็จรูป</h3>
+        <div class="theme-grid" id="themeGrid"></div>
+      </div>
+
+      <div class="panel">
+        <h3>ปรับสีเอง</h3>
+        <div class="color-grid" id="colorGrid"></div>
+        <button class="btn btn-soft" style="width:100%;margin-top:12px" onclick="saveTheme()">
+          บันทึกสีที่เลือก
+        </button>
+      </div>
+    </div>
+
+    <div id="tab-reviews" class="hidden">
+      <div class="panel">
+        <h3>จัดการรีวิว</h3>
+        <div id="adminReviews"></div>
+      </div>
+
+      <button class="btn btn-danger" style="width:100%" onclick="deleteAllReviews()">
+        ล้างรีวิวทั้งหมด
+      </button>
+    </div>
+  </div>
+      </div>
+      <script>
+const KEY='jaoriche_credit_v4';
+const FIREBASE_URL='https://my-credit-e04ca-default-rtdb.firebaseio.com/data.json';
+const ADMIN_PASSWORD='160243';
+
+const themes={
+  light:[
+    {name:'Cotton Candy',bg:'#fff8fc',card:'#fff',text:'#5b5261',primary:'#c39bdc',primaryText:'#fff',accent:'#f7d6e8',border:'#eee3f0',shadow:'rgba(101,76,112,.10)'},
+    {name:'Peach Milk',bg:'#fffaf5',card:'#fff',text:'#655951',primary:'#e5a48f',primaryText:'#fff',accent:'#f8ded2',border:'#f0e5df',shadow:'rgba(116,79,63,.10)'},
+    {name:'Mint Cream',bg:'#f5fcf9',card:'#fff',text:'#50615b',primary:'#8bbfae',primaryText:'#fff',accent:'#d8eee5',border:'#e1eee9',shadow:'rgba(63,100,87,.10)'},
+    {name:'Blue Jelly',bg:'#f6faff',card:'#fff',text:'#536074',primary:'#91acd6',primaryText:'#fff',accent:'#dce7f7',border:'#e4ebf5',shadow:'rgba(67,87,120,.10)'},
+    {name:'Lemon Cloud',bg:'#fffdf4',card:'#fff',text:'#655f4f',primary:'#d8bd72',primaryText:'#fff',accent:'#f5ebc5',border:'#eee8d5',shadow:'rgba(112,96,53,.10)'},
+    {name:'Lavender Cream',bg:'#faf8ff',card:'#fff',text:'#5e5870',primary:'#a99be2',primaryText:'#fff',accent:'#e7e0f8',border:'#ebe6f4',shadow:'rgba(91,76,126,.10)'}
+  ],
+  dark:[
+    {name:'Berry Night',bg:'#17131b',card:'#211b26',text:'#eee5f0',primary:'#b98ad0',primaryText:'#fff',accent:'#3a293e',border:'#3a3040',shadow:'rgba(0,0,0,.30)'},
+    {name:'Mocha Night',bg:'#191513',card:'#241e1a',text:'#eee4dc',primary:'#c79470',primaryText:'#fff',accent:'#3a2c24',border:'#3d3029',shadow:'rgba(0,0,0,.32)'},
+    {name:'Forest Night',bg:'#111917',card:'#19231f',text:'#e1eee8',primary:'#7fb8a0',primaryText:'#fff',accent:'#263b33',border:'#304239',shadow:'rgba(0,0,0,.32)'},
+    {name:'Ocean Night',bg:'#11171e',card:'#19222d',text:'#e0e9f2',primary:'#83a8d2',primaryText:'#fff',accent:'#263548',border:'#30404f',shadow:'rgba(0,0,0,.34)'},
+    {name:'Plum Night',bg:'#19131b',card:'#251c29',text:'#eee1f0',primary:'#d39abf',primaryText:'#fff',accent:'#3d293c',border:'#403040',shadow:'rgba(0,0,0,.34)'},
+    {name:'Rose Night',bg:'#1b1317',card:'#271b21',text:'#f0e2e6',primary:'#d48fa6',primaryText:'#fff',accent:'#402932',border:'#463039',shadow:'rgba(0,0,0,.34)'}
+  ]
+};
+
+let state={
+  name:'ʝᨡᨵᩙɾ𝒊ɕִׄhׁׅ֮ᧉ᩠֗爱',
+  desc:'ขอบคุณที่เข้ามาแสดงความพึงพอใจให้กับร้านของเรานะคะ ♡',
+  note:'',
+  avatar:'ไม่มีชื่อ 274_20261008161426.jpg',
+  banner:'ไม่มีชื่อ 3092_20261008172149.jpg',
+  colors:themes.light[0],
+  reviews:[]
+};
+
+let proofData='';
+let adminLogged=false;
+async function load(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(KEY));
+    if(saved) state={
+      ...state,
+      ...saved,
+      colors:{...state.colors,...(saved.colors||{})}
+    };
+  }catch(e){}
+
+  render();
+
+  try{
+    const res=await fetch(FIREBASE_URL,{cache:'no-store'});
+    if(!res.ok)throw new Error('Firebase GET '+res.status);
+
+    const remote=await res.json();
+
+    if(remote && typeof remote==='object'){
+      state={
+        ...state,
+        ...remote,
+        colors:{...state.colors,...(remote.colors||{})}
+      };
+
+      render();
+      localStorage.setItem(KEY,JSON.stringify(state));
+    }else{
+      await save();
+    }
+  }catch(e){
+    console.warn('Firebase load failed:',e);
+    toast('โหลดข้อมูลออนไลน์ไม่สำเร็จ ใช้ข้อมูลในเครื่องชั่วคราว');
+  }
+}
+
+async function save(){
+  localStorage.setItem(KEY,JSON.stringify(state));
+
+  try{
+    const res=await fetch(FIREBASE_URL,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(state)
+    });
+
+    if(!res.ok)throw new Error('Firebase PUT '+res.status);
+  }catch(e){
+    console.warn('Firebase save failed:',e);
+  }
+}
+
+function driveUrl(url){
+  if(!url)return '';
+
+  url=url.trim();
+
+  let m=url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if(m)return 'https://lh3.googleusercontent.com/d/'+m[1];
+
+  m=url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if(m)return 'https://lh3.googleusercontent.com/d/'+m[1];
+
+  m=url.match(/drive\.usercontent\.google\.com\/download\?id=([a-zA-Z0-9_-]+)/);
+  if(m)return 'https://lh3.googleusercontent.com/d/'+m[1];
+
+  return url;
+}
+
+function applyColors(){
+  const c=state.colors;
+
+  document.documentElement.style.setProperty('--bg',c.bg);
+  document.documentElement.style.setProperty('--card',c.card);
+  document.documentElement.style.setProperty('--text',c.text);
+  document.documentElement.style.setProperty('--primary',c.primary);
+  document.documentElement.style.setProperty('--primaryText',c.primaryText||'#fff');
+  document.documentElement.style.setProperty('--accent',c.accent);
+  document.documentElement.style.setProperty('--border',c.border);
+  document.documentElement.style.setProperty(
+    '--shadow',
+    '0 14px 38px '+(c.shadow||'rgba(101,76,112,.10)')
+  );
+}
+
+function render(){
+  applyColors();
+
+  document.title=state.name+' — เครดิตการซื้อขาย';
+
+  $('storeName').textContent=state.name;
+  $('storeDesc').textContent=state.desc;
+
+  $('profileLetter').textContent=
+    (state.name||'ʝ').trim().charAt(0).toUpperCase();
+
+  const av=driveUrl(state.avatar);
+  const ba=driveUrl(state.banner);
+
+  setImage('profile',av,'profileLetter');
+  setImage('banner',ba,'bannerFallback');
+
+  const marquee=$('bannerMarquee');
+  const marqueeText=$('bannerMarqueeText');
+
+  marqueeText.textContent=state.note||'';
+  marquee.classList.toggle('hidden',!state.note.trim());
+
+  const rs=state.reviews||[];
+
+  $('reviewCount').textContent=rs.length;
+
+  const avg=rs.length
+    ? rs.reduce((a,r)=>a+Number(r.rating||0),0)/rs.length
+    : 0;
+
+  $('avgRating').textContent=avg.toFixed(1);$('countLabel').textContent=rs.length+' รายการ';
+
+  const list=$('reviewList');
+
+  if(!rs.length){
+    list.innerHTML=
+      '<div class="empty">ยังไม่มีรีวิว ♡<br><small>เป็นคนแรกที่มาเขียนเครดิตให้ร้านได้นะคะ</small></div>';
+  }else{
+    list.innerHTML=rs.slice().reverse().map(reviewCard).join('');
+  }
+}
+
+function setImage(imgId,url,fallbackId){
+  const img=$(imgId);
+  const fb=$(fallbackId);
+
+  img.onerror=()=>{
+    img.classList.add('hidden');
+    fb.classList.remove('hidden');
+  };
+
+  if(url){
+    img.src=url;
+    img.classList.remove('hidden');
+    fb.classList.add('hidden');
+  }else{
+    img.classList.add('hidden');
+    fb.classList.remove('hidden');
+  }
+}
+
+function reviewCard(r){
+  const initial=escapeHtml(
+    (r.name||'?').trim().charAt(0).toUpperCase()
+  );
+
+  const stars=
+    '★'.repeat(Number(r.rating||0))+
+    '☆'.repeat(5-Number(r.rating||0));
+
+  const date=r.date
+    ?new Date(r.date).toLocaleDateString(
+      'th-TH',
+      {year:'numeric',month:'short',day:'numeric'}
+    )
+    :'';
+
+  return `<article class="review-card">
+    <div class="review-top">
+      <div class="avatar-letter">${initial}</div>
+
+      <div class="review-meta">
+        <div class="review-name">${escapeHtml(r.name)}</div>
+        <div class="review-date">${date}</div>
+      </div>
+
+      <div class="stars">${stars}</div>
+    </div>
+
+    <div class="review-text">${escapeHtml(r.text)}</div>
+
+    ${r.proof
+      ?`<img class="proof" src="${r.proof}" alt="หลักฐานการซื้อขาย" loading="lazy">`
+      :''
+    }
+  </article>`;
+}
+
+function escapeHtml(s){
+  return String(s??'').replace(
+    /[&<>\"']/g,
+    m=>({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '\"':'&quot;',
+      "'":'&#039;'
+    }[m])
+  );
+}
+
+function $(id){
+  return document.getElementById(id);
+}
+
+function openReview(){
+  setRating(5);
+  $('reviewModal').classList.remove('hidden');
+}
+
+function closeModal(id){
+  $(id).classList.add('hidden');
+}
+
+function outsideClose(e,id){
+  if(e.target.id===id)closeModal(id);
+}
+
+function previewProof(e){
+  const file=e.target.files?.[0];
+
+  if(!file)return;
+
+  if(!file.type.startsWith('image/'))
+    return toast('กรุณาเลือกไฟล์รูปภาพ');
+
+  const reader=new FileReader();
+
+  reader.onload=()=>{
+    proofData=reader.result;
+    $('proofPreview').src=proofData;
+    $('proofPreview').classList.remove('hidden');
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function setRating(n){
+  n=Math.max(1,Math.min(5,Number(n)||5));
+
+  $('selectedRating').value=n;
+
+  document.querySelectorAll('.rating-star').forEach(star=>{
+    star.classList.toggle(
+      'active',
+      Number(star.dataset.rating)<=n
+    );
+  });
+}
+
+function submitReview(e){
+  e.preventDefault();
+
+  const name=$('rName').value.trim();
+  const text=$('rText').value.trim();
+  const rating=Number($('selectedRating').value||5);
+
+  if(!name||!text)return;
+
+  $('submitReviewBtn').disabled=true;
+
+  state.reviews=state.reviews||[];
+
+  state.reviews.push({
+    id:Date.now().toString(36)+Math.random().toString(36).slice(2),
+    name,
+    rating,
+    text,
+    proof:proofData,
+    date:new Date().toISOString()
+  });
+
+  save();
+
+  proofData='';
+  e.target.reset();
+  setRating(5);
+  $('proofPreview').classList.add('hidden');$('submitReviewBtn').disabled=false;
+
+  closeModal('reviewModal');
+  render();
+  toast('ส่งรีวิวเรียบร้อยแล้ว ♡');
+}
+
+function openAdminLogin(){
+  if(adminLogged){
+    openAdmin();
+    return;
+  }
+
+  $('adminPassword').value='';$('loginModal').classList.remove('hidden');
+
+  setTimeout(
+    ()=>$('adminPassword').focus(),
+    100
+  );
+}
+
+function loginAdmin(){
+  if($('adminPassword').value===ADMIN_PASSWORD){
+    adminLogged=true;
+    closeModal('loginModal');
+    openAdmin();
+  }else{
+    toast('รหัสแอดมินไม่ถูกต้อง');
+  }
+}
+
+function openAdmin(){
+  fillAdmin();
+  renderThemes();
+  renderColorInputs();
+  renderAdminReviews();
+  $('adminModal').classList.remove('hidden');
+}
+
+function logoutAdmin(){
+  adminLogged=false;
+  closeModal('adminModal');
+}
+
+function fillAdmin(){
+  $('aName').value=state.name;
+  $('aDesc').value=state.desc;
+  $('aNote').value=state.note||'';
+  $('aAvatar').value=state.avatar\vert{}\vert{}'';$('aBanner').value=state.banner||'';
+}
+
+function saveStore(){
+  state.name=$('aName').value.trim()||'ʝᨡᨵᩙɾ𝒊ɕִׄhׁׅ֮ᧉ᩠֗爱';
+  state.desc=$('aDesc').value;
+  state.note=$('aNote').value;
+  state.avatar=$('aAvatar').value.trim();
+  state.banner=$('aBanner').value.trim();
+
+  save();
+  render();
+  toast('บันทึกข้อมูลร้านแล้ว ♡');
+}
+
+function adminTab(tab,el){
+  document.querySelectorAll('.admin-tabs .tab')
+    .forEach(x=>x.classList.remove('active'));
+
+  el.classList.add('active');
+
+  ['store','theme','reviews'].forEach(x=>{
+    $('tab-'+x).classList.toggle('hidden',x!==tab);
+  });
+
+  if(tab==='reviews')
+    renderAdminReviews();
+}
+
+function renderThemes(){
+  const all=[...themes.light,...themes.dark];
+
+  $('themeGrid').innerHTML=all.map((t,i)=>
+    `<button class="theme"
+      onclick='useTheme(${JSON.stringify(t)})'
+      style="background:${t.bg};color:${t.text};border-color:${t.border}">
+
+      <b>${t.name}</b>
+
+      <small style="color:${t.text}">
+        ${i<6?'☀ โทนสว่าง':'☾ โทนมืด'} ·
+        ${[t.primary,t.accent,t.card].map(x=>
+          `<i style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${x};vertical-align:-2px"></i>`
+        ).join(' ')}
+      </small>
+    </button>`
+  ).join('');
+}
+
+function useTheme(t){
+  state.colors={...t};
+  applyColors();
+  renderColorInputs();
+  save();
+  render();
+  toast('เปลี่ยนธีมแล้ว ♡');
+}
+
+const colorFields=[
+  ['bg','พื้นหลัง'],
+  ['card','สีการ์ด'],
+  ['text','สีข้อความ'],
+  ['primary','สีปุ่มหลัก'],
+  ['primaryText','ข้อความบนปุ่ม'],
+  ['accent','สีตกแต่ง'],
+  ['border','สีเส้นขอบ'],
+  ['shadow','สีเงา']
+];
+
+function renderColorInputs(){
+  $('colorGrid').innerHTML=colorFields.map(([key,label])=>{
+    let val=state.colors[key]||'#ffffff';
+
+    if(key==='shadow'){
+      const m=String(val).match(/rgba?\(([^)]+)\)/);
+
+      if(m){
+        const parts=m[1]
+          .split(',')
+          .map(x=>parseFloat(x.trim()));
+
+        if(parts.length>=3){
+          val='#'+[
+            parts[0],
+            parts[1],
+            parts[2]
+          ].map(x=>
+            Math.max(
+              0,
+              Math.min(
+                255,
+                Math.round(x)
+              )
+            ).toString(16).padStart(2,'0')
+          ).join('');
+        }else{
+          val='#a98de3';
+        }
+      }else if(!/^#[0-9a-f]{6}$/i.test(val)){
+        val='#a98de3';
+      }
+    }
+
+    return `<label class="color-input">
+      <span>${label}</span>
+      <input
+        class="input hex-input"
+        style="padding:8px 10px"
+        value="${val}"
+        data-color="${key}"
+        maxlength="7"
+        placeholder="#ffffff"
+        inputmode="text">
+    </label>`;
+  }).join('');
+
+  $('colorGrid')
+    .querySelectorAll('.hex-input')
+    .forEach(inp=>inp.oninput=()=>{
+      let v=inp.value.trim();
+
+      if(v && !v.startsWith('#'))
+        v='#'+v;
+
+      if(/^#[0-9a-f]{6}$/i.test(v)){
+        const k=inp.dataset.color;
+
+        state.colors[k]=
+          k==='shadow'
+          ?hexToRgba(v,.13)
+          :v;
+
+        applyColors();
+      }
+    });
+}
+
+function hexToRgba(hex,a){
+  const n=parseInt(hex.slice(1),16);
+
+  return `rgba(${
+    n>>16&255
+  },${
+    n>>8&255
+  },${
+    n&255
+  },${a})`;
+}
+function saveTheme(){
+  save();
+  render();
+  toast('บันทึกโทนสีแล้ว ♡');
+}
+
+function renderAdminReviews(){
+  const rs=state.reviews||[];
+
+  if(!rs.length){
+    $('adminReviews').innerHTML=
+      '<div class="empty">ยังไม่มีรีวิว</div>';
+    return;
+  }
+
+  $('adminReviews').innerHTML=
+    rs.slice().reverse().map(r=>
+      `<div class="review-admin">
+
+        <div
+          class="avatar-letter"
+          style="width:38px;height:38px;font-size:12px">
+          ${escapeHtml(
+            (r.name||'?').charAt(0).toUpperCase()
+          )}
+        </div>
+
+        <div class="review-admin-info">
+          <b>
+            ${escapeHtml(r.name)} · ${r.rating} ★
+          </b>
+          <span>
+            ${escapeHtml(r.text)}
+          </span>
+        </div>
+
+        <button
+          class="btn btn-danger"
+          style="padding:7px 10px"
+          onclick="deleteReview('${r.id}')">
+          ลบ
+        </button>
+
+      </div>`
+    ).join('');
+}
+
+function deleteReview(id){
+  if(!confirm('ต้องการลบรีวิวนี้ใช่ไหม?'))
+    return;
+
+  state.reviews=
+    state.reviews.filter(r=>r.id!==id);
+
+  save();
+  render();
+  renderAdminReviews();
+
+  toast('ลบรีวิวแล้ว');
+}
+
+function deleteAllReviews(){
+  if(!state.reviews.length)
+    return toast('ยังไม่มีรีวิว');
+
+  if(!confirm(
+    'ต้องการลบรีวิวทั้งหมดใช่ไหม? การกระทำนี้ย้อนกลับไม่ได้'
+  ))return;
+
+  state.reviews=[];
+
+  save();
+  render();
+  renderAdminReviews();
+
+  toast('ล้างรีวิวทั้งหมดแล้ว');
+}
+
+function toast(msg){
+  document.querySelectorAll('.toast')
+    .forEach(x=>x.remove());
+
+  const d=document.createElement('div');
+
+  d.className='toast';
+  d.textContent=msg;
+
+  document.body.appendChild(d);
+
+  setTimeout(
+    ()=>d.remove(),
+    2200
+  );
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document
+      .querySelectorAll('.modal-bg:not(.hidden)')
+      .forEach(x=>x.classList.add('hidden'));
+  }
+});
+
+load();
+</script>
+</body>
+</html>
+
+<style>
+@media (min-width: 769px){
+  .profile{
+    width:155px;
+    height:155px;
+    bottom:-77.5px;
+  }
+
+  .profile-letter{
+    font-size:44px;
+  }
+
+  .store-info{
+    padding-top:92px;
+  }
+}
+</style>
